@@ -1,0 +1,121 @@
+study_id,species_id,replicate,trait_name,trait_value,environment_name,environment_value
+Leary and Petchey 2009,tetrahymena,1,intrinsic growth rate,3.562814984942229,temperature,26
+Leary and Petchey 2009,tetrahymena,2,intrinsic growth rate,3.4364924667072048,temperature,26
+Leary and Petchey 2009,tetrahymena,3,intrinsic growth rate,3.4650975285511705,temperature,26
+Leary and Petchey 2009,loxocephallus,1,intrinsic growth rate,1.479454684348316,temperature,26
+Leary and Petchey 2009,loxocephallus,2,intrinsic growth rate,1.4127714702361638,temperature,26
+Leary and Petchey 2009,loxocephallus,3,intrinsic growth rate,1.319325074658224,temperature,26
+Leary and Petchey 2009,colpidium,1,intrinsic growth rate,0.061575427441911385,temperature,26
+Leary and Petchey 2009,colpidium,2,intrinsic growth rate,0,temperature,26
+Leary and Petchey 2009,colpidium,3,intrinsic growth rate,0.1332315001717567,temperature,26
+Leary and Petchey 2009,paramecium,1,intrinsic growth rate,2.904413625345672,temperature,26
+Leary and Petchey 2009,paramecium,2,intrinsic growth rate,2.846048907731236,temperature,26
+Leary and Petchey 2009,paramecium,3,intrinsic growth rate,2.9108576816560676,temperature,26
+Leary and Petchey 2009,tetrahymena,1,intrinsic growth rate,3.648409590307126,temperature,24
+Leary and Petchey 2009,tetrahymena,2,intrinsic growth rate,3.5209613531895565,temperature,24
+Leary and Petchey 2009,tetrahymena,3,intrinsic growth rate,3.606657767681687,temperature,24
+Leary and Petchey 2009,loxocephallus,1,intrinsic growth rate,1.279972717259743,temperature,24
+Leary and Petchey 2009,loxocephallus,2,intrinsic growth rate,1.3761706233910103,temperature,24
+Leary and Petchey 2009,loxocephallus,3,intrinsic growth rate,1.2632629297757225,temperature,24
+Leary and Petchey 2009,colpidium,1,intrinsic growth rate,0.22719856408393366,temperature,24
+Leary and Petchey 2009,colpidium,2,intrinsic growth rate,0.09968548048725762,temperature,24
+Leary and Petchey 2009,colpidium,3,intrinsic growth rate,0.4153159355562227,temperature,24
+Leary and Petchey 2009,paramecium,1,intrinsic growth rate,2.063293417562605,temperature,24
+Leary and Petchey 2009,paramecium,2,intrinsic growth rate,2.4102573418420192,temperature,24
+Leary and Petchey 2009,paramecium,3,intrinsic growth rate,2.288882476464549,temperature,24
+Leary and Petchey 2009,tetrahymena,1,intrinsic growth rate,3.4859524280087477,temperature,22
+Leary and Petchey 2009,tetrahymena,2,intrinsic growth rate,3.469829028401561,temperature,22
+Leary and Petchey 2009,tetrahymena,3,intrinsic growth rate,3.5232812097968282,temperature,22
+Leary and Petchey 2009,loxocephallus,1,intrinsic growth rate,0.9533241557314893,temperature,22
+Leary and Petchey 2009,loxocephallus,2,intrinsic growth rate,1.1851521442318926,temperature,22
+Leary and Petchey 2009,loxocephallus,3,intrinsic growth rate,1.1126363148249148,temperature,22
+Leary and Petchey 2009,colpidium,1,intrinsic growth rate,1.3128428624159727,temperature,22
+Leary and Petchey 2009,colpidium,2,intrinsic growth rate,0.5581633009910876,temperature,22
+Leary and Petchey 2009,colpidium,3,intrinsic growth rate,1.23856042749267,temperature,22
+Leary and Petchey 2009,paramecium,1,intrinsic growth rate,1.8037615899385977,temperature,22
+Leary and Petchey 2009,paramecium,2,intrinsic growth rate,1.839632137674302,temperature,22
+Leary and Petchey 2009,paramecium,3,intrinsic growth rate,1.906855820911051,temperature,22
+Leary and Petchey 2009,tetrahymena,1,intrinsic growth rate,2.6428268521113316,temperature,20
+Leary and Petchey 2009,tetrahymena,2,intrinsic growth rate,2.6840266856164705,temperature,20
+Leary and Petchey 2009,tetrahymena,3,intrinsic growth rate,2.624273158572118,temperature,20
+Leary and Petchey 2009,loxocephallus,1,intrinsic growth rate,0.876982852327145,temperature,20
+Leary and Petchey 2009,loxocephallus,2,intrinsic growth rate,0.8249015533007348,temperature,20
+Leary and Petchey 2009,loxocephallus,3,intrinsic growth rate,0.7218871131780549,temperature,20
+Leary and Petchey 2009,colpidium,1,intrinsic growth rate,1.13113755597629,temperature,20
+Leary and Petchey 2009,colpidium,2,intrinsic growth rate,0.9550936358631943,temperature,20
+Leary and Petchey 2009,colpidium,3,intrinsic growth rate,0.9291999380494858,temperature,20
+Leary and Petchey 2009,paramecium,1,intrinsic growth rate,1.5288685529508914,temperature,20
+Leary and Petchey 2009,paramecium,2,intrinsic growth rate,1.4703666733611667,temperature,20
+Leary and Petchey 2009,paramecium,3,intrinsic growth rate,1.3235005811798657,temperature,20
+Leary and Petchey 2009,tetrahymena,1,intrinsic growth rate,2.3691684475750794,temperature,18
+Leary and Petchey 2009,tetrahymena,2,intrinsic growth rate,2.583063569731038,temperature,18
+Leary and Petchey 2009,tetrahymena,3,intrinsic growth rate,2.283614042566799,temperature,18
+Leary and Petchey 2009,loxocephallus,1,intrinsic growth rate,0.8213258290919944,temperature,18
+Leary and Petchey 2009,loxocephallus,2,intrinsic growth rate,0.6650461852392919,temperature,18
+Leary and Petchey 2009,loxocephallus,3,intrinsic growth rate,0.6913840143840463,temperature,18
+Leary and Petchey 2009,colpidium,1,intrinsic growth rate,1.1325312401600711,temperature,18
+Leary and Petchey 2009,colpidium,2,intrinsic growth rate,1.0976026536313142,temperature,18
+Leary and Petchey 2009,colpidium,3,intrinsic growth rate,1.0383564722155736,temperature,18
+Leary and Petchey 2009,paramecium,1,intrinsic growth rate,1.0276036177152643,temperature,18
+Leary and Petchey 2009,paramecium,2,intrinsic growth rate,1.1562731698795237,temperature,18
+Leary and Petchey 2009,paramecium,3,intrinsic growth rate,1.1048657351587794,temperature,18
+Leary and Petchey 2009,tetrahymena,1,carrying capacity,3790.1214028990807,temperature,18
+Leary and Petchey 2009,loxocephallus,1,carrying capacity,2457.806213246673,temperature,18
+Leary and Petchey 2009,colpidium,1,carrying capacity,832.4792244738292,temperature,18
+Leary and Petchey 2009,paramecium,1,carrying capacity,367.85539551713197,temperature,18
+Leary and Petchey 2009,tetrahymena,1,carrying capacity,4423.065756914219,temperature,20
+Leary and Petchey 2009,loxocephallus,1,carrying capacity,4043.251096929618,temperature,20
+Leary and Petchey 2009,colpidium,1,carrying capacity,2815.566633656443,temperature,20
+Leary and Petchey 2009,paramecium,1,carrying capacity,509.1821270103008,temperature,20
+Leary and Petchey 2009,tetrahymena,1,carrying capacity,4052.3536943090917,temperature,22
+Leary and Petchey 2009,loxocephallus,1,carrying capacity,3454.0528769567486,temperature,22
+Leary and Petchey 2009,colpidium,1,carrying capacity,3550.5843689313488,temperature,22
+Leary and Petchey 2009,paramecium,1,carrying capacity,382.4769056071038,temperature,22
+Leary and Petchey 2009,tetrahymena,1,carrying capacity,10538.181838994391,temperature,24
+Leary and Petchey 2009,loxocephallus,1,carrying capacity,2829.2959564991625,temperature,24
+Leary and Petchey 2009,colpidium,1,carrying capacity,932.5838136482399,temperature,24
+Leary and Petchey 2009,paramecium,1,carrying capacity,484.59053276137627,temperature,24
+Leary and Petchey 2009,tetrahymena,1,carrying capacity,6140.463398255147,temperature,26
+Leary and Petchey 2009,loxocephallus,1,carrying capacity,2246.7557809257237,temperature,26
+Leary and Petchey 2009,colpidium,1,carrying capacity,11.631288165164293,temperature,26
+Leary and Petchey 2009,paramecium,1,carrying capacity,460.7832984694407,temperature,26
+Leary and Petchey 2009,tetrahymena,2,carrying capacity,6830.173593303387,temperature,18
+Leary and Petchey 2009,loxocephallus,2,carrying capacity,2165.830750059218,temperature,18
+Leary and Petchey 2009,colpidium,2,carrying capacity,879.8231832822921,temperature,18
+Leary and Petchey 2009,paramecium,2,carrying capacity,536.0258491128637,temperature,18
+Leary and Petchey 2009,tetrahymena,2,carrying capacity,3771.0447019461953,temperature,20
+Leary and Petchey 2009,loxocephallus,2,carrying capacity,4155.758947610143,temperature,20
+Leary and Petchey 2009,colpidium,2,carrying capacity,1686.967712464807,temperature,20
+Leary and Petchey 2009,paramecium,2,carrying capacity,374.448098643253,temperature,20
+Leary and Petchey 2009,tetrahymena,2,carrying capacity,7576.514135129877,temperature,22
+Leary and Petchey 2009,loxocephallus,2,carrying capacity,3500.8500836557896,temperature,22
+Leary and Petchey 2009,colpidium,2,carrying capacity,974.6160180444667,temperature,22
+Leary and Petchey 2009,paramecium,2,carrying capacity,484.766912673997,temperature,22
+Leary and Petchey 2009,tetrahymena,2,carrying capacity,3420.21799934261,temperature,24
+Leary and Petchey 2009,loxocephallus,2,carrying capacity,2832.60321440142,temperature,24
+Leary and Petchey 2009,colpidium,2,carrying capacity,798.9550589481446,temperature,24
+Leary and Petchey 2009,paramecium,2,carrying capacity,404.05575111041037,temperature,24
+Leary and Petchey 2009,tetrahymena,2,carrying capacity,4612.536296749121,temperature,26
+Leary and Petchey 2009,loxocephallus,2,carrying capacity,1964.690516606893,temperature,26
+Leary and Petchey 2009,colpidium,2,carrying capacity,2.1128248468201987,temperature,26
+Leary and Petchey 2009,paramecium,2,carrying capacity,564.3676120733867,temperature,26
+Leary and Petchey 2009,tetrahymena,3,carrying capacity,5925.990721090985,temperature,18
+Leary and Petchey 2009,loxocephallus,3,carrying capacity,2116.797279329358,temperature,18
+Leary and Petchey 2009,colpidium,3,carrying capacity,1434.2972146803622,temperature,18
+Leary and Petchey 2009,paramecium,3,carrying capacity,430.93044594035786,temperature,18
+Leary and Petchey 2009,tetrahymena,3,carrying capacity,4333.0825080595305,temperature,20
+Leary and Petchey 2009,loxocephallus,3,carrying capacity,2961.783744429167,temperature,20
+Leary and Petchey 2009,colpidium,3,carrying capacity,266.4002664002664,temperature,20
+Leary and Petchey 2009,paramecium,3,carrying capacity,435.217333657759,temperature,20
+Leary and Petchey 2009,tetrahymena,3,carrying capacity,5493.671941727643,temperature,22
+Leary and Petchey 2009,loxocephallus,3,carrying capacity,3767.7786953200703,temperature,22
+Leary and Petchey 2009,colpidium,3,carrying capacity,2880.08104814436,temperature,22
+Leary and Petchey 2009,paramecium,3,carrying capacity,466.70860565736905,temperature,22
+Leary and Petchey 2009,tetrahymena,3,carrying capacity,5224.761427681934,temperature,24
+Leary and Petchey 2009,loxocephallus,3,carrying capacity,2927.173739187087,temperature,24
+Leary and Petchey 2009,colpidium,3,carrying capacity,26.74690738883317,temperature,24
+Leary and Petchey 2009,paramecium,3,carrying capacity,356.6572840030128,temperature,24
+Leary and Petchey 2009,tetrahymena,3,carrying capacity,5045.464734437937,temperature,26
+Leary and Petchey 2009,loxocephallus,3,carrying capacity,2130.43236734424,temperature,26
+Leary and Petchey 2009,colpidium,3,carrying capacity,8.158825129181396,temperature,26
+Leary and Petchey 2009,paramecium,3,carrying capacity,566.6292539629753,temperature,26

@@ -1,0 +1,105 @@
+---
+title: "Dataset specifications"
+subtitle: "Benchmarking response diversity"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: html_document
+---
+
+# Benchmarking datasets
+
+These are datasets used in across study analyses.
+
+## 1. Studies metadata
+
+The file `studies_metadata.csv` contains metadata about each study and a `study_id` that is then used in all datasets for an individual study.
+
+Contains the following variables, though could contain more, e.g. location:
+
+|Information contained<br>in variable|Suggested variable name|Mapping|Requirements|
+|---|---|---|---|
+|Study identifier|`study_id`|In all datasets of the same study|Required|
+|Organisms, e.g. cilitate|`organism_type`|Not mapped to any other dataset|Required|
+|Ecosystem, e.g. aquatic|`ecosystem`|Not mapped to any other dataset|Required|
+|DOI of report/paper about the study|`research_report_doi`|Not mapped to any other dataset|Required|
+|DOI of data deposit of the study|`data_deposit_doi`|Not mapped to any other dataset|Required|
+
+
+## 2. Metrics metadata
+
+The file `metric_metadata.csv` contains metadata about the stability and the response diversity metrics used.
+
+Contains the following variables:
+
+|Information contained<br>in variable|Suggested variable name|Mapping|Requirements|
+|---|---|---|---|
+|Study identifier|`study_id`|In all datasets of the same study|Required|
+|Organisms, e.g. cilitate|`organism_type`|Not mapped to any other dataset|Required|
+|Ecosystem, e.g. aquatic|`ecosystem`|Not mapped to any other dataset|Required|
+|DOI of report/paper about the study|`research_report_doi`|Not mapped to any other dataset|Required|
+|DOI of data deposit of the study|`data_deposit_doi`|Not mapped to any other dataset|Required|
+
+
+
+# Study datasets
+
+## 1. Trait data
+
+Trait data of some kind is required to calculate the diversity of responses among the set of organisms in a community. The trait information may often be at the species level, such that the trait data is in a species by trait matrix (or in long format, as described below).
+
+The trait information should be in a dataset with the following variables:
+
+|Information contained<br>in variable|Suggested variable name|Mapping|Requirements|
+|---|---|---|---|
+|Study identifier|`study_id`|In all datasets of the same study|Required|
+|Organism identifier, e.g. species name|`species_id`|Maps to the same variable in the community composition dataset|Required|
+|Trait name, e.g. growth rate|`trait_name`|Not mapped to any other dataset|Required|
+|Trait value|`trait_value`|Not mapped to any other dataset|Required|
+|Environmental variable name, e.g. temperature, used if the trait value was measured at a specific value of an environmental variable|`environment_name`|Maps to the same variable in the environmental conditions dataset|Optional|
+Environmental value, e.g. 20 degrees C, used if the trait value was measured at a specific value of an environmental variable|`environment_value`|Maps to the environmental conditions dataset via the environmental variable name|Optional|
+
+
+
+## 2. Community composition data
+
+A list of the species that occur in each community. A required dataset.
+
+|Information contained<br>in variable|Suggested variable name|Mapping|Requirements|
+|---|---|---|---|
+|Study identifier|`study_id`|In all datasets of the same study|Required|
+|Community identifier, e.g. `community_1`|`community_id`|Maps to the same variable in the community stability dataset and the environment dataset|Required|
+|Organism identifier, e.g. species name|`species_id`|Maps to the same variable in the trait dataset|Required|
+
+## 3. Community data
+
+Community level data, one value of each metric for each community.
+
+|Information contained<br>in variable|Suggested variable name|Mapping|Requirements|
+|---|---|---|---|
+|Study identifier|`study_id`|In all datasets of the same study|Required|
+|Community identifier, e.g. `community_1`|`community_id`|Maps to the same variable in the community composition dataset|Required|
+|Community metric name, e.g. coefficient of variation of total biomass|`comm_metric_name`|Not mapped to any other dataset|Required and must be one of the options in the `metrics_metadata.csv` dataset|
+|Community metric value, e.g. coefficient of variation of total biomass|`comm_metric_value`|Not mapped to any other dataset|Required|
+
+## 4. Environment data
+
+Environmental conditions experienced by each community, an optional dataset.
+
+|Information contained<br>in variable|Suggested variable name|Mapping|Requirements|
+|---|---|---|---|
+|Study identifier|`study_id`|In all datasets of the same study|Required|
+|Community identifier, e.g. `community_1`|`community_id`|Maps to the same variable in the community composition dataset|Required|
+|The time at which the environmental value occurred|`environment_time`|No mapping|Required|
+|Environmental variable name, e.g. temperature|`environment_name`|Maps to the same variable in the trait dataset|Required|
+Environmental value, e.g. 20 degrees C|`environment_value`|Maps to the trait dataset via the environmental variable name|Required|
+
+## Community stability and response diversity data
+
+This dataset is produced by processing of the previous three or four.
+
+|Information contained<br>in variable|Suggested variable name|Mapping|Requirements|
+|---|---|---|---|
+|Study identifier|`study_id`|In all datasets of the same study|Required|
+|Community identifier, e.g. `community_1`|`community_id`|Maps to the same variable in the community composition dataset|Required|
+|Trait name, e.g. growth rate|`trait_name`|Not mapped to any other dataset|Required|
+|Environmental variable name, e.g. temperature|`environment_name`|Maps to the same variable in the trait dataset|Required|
+|Other variables that contain community stability and response diversity measures|Names in `metrics_metadata.csv`|Not mapped to any other dataset|Required|

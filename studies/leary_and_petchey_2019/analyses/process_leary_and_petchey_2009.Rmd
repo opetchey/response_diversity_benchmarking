@@ -1,0 +1,129 @@
+---
+title: "Process Leary and Petchey 2009"
+author: "Owen Petchey"
+date: "6/30/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warnings = FALSE)
+```
+
+
+```{r}
+rm(list = ls())
+library(tidyverse)
+library(here)
+source(here("../../r/functions.r"))
+```
+
+# Import and check datasets
+
+```{r}
+study_id <- "leary_and_petchey_2019"
+```
+
+```{r}
+## check correct folder locations
+temp <- stringr::str_split(here(), "/")[[1]]
+ifelse(temp[length(temp)] == study_id, "File locations correct.",
+   "here() is not returning the correct location.")
+```
+
+
+```{r}
+trait <- read_csv(here("data/derived1/trait_data.csv"))
+composition <- read_csv(here("data/derived1/community_composition_data.csv"))
+community <- read_csv(here("data/derived1/community_data.csv"))
+environment <- read_csv(here("data/derived1/environment_data.csv"))
+```
+
+# Any trait transformations
+
+```{r}
+trait <- trait %>%
+  mutate(trait_value = ifelse(trait_name == "carrying capacity",
+                           log10(trait_value),
+                           trait_value))
+```
+
+
+# Derivative based response diversity
+
+Fit response curves separately for each species and each environmental variable
+
+```{r}
+response_models <- trait %>%
+  nest_by(species_id, trait_name, environment_name) %>%
+  mutate(models = list(mgcv::gam(trait_value ~ s(environment_value, k = 5),
+                              data = data))) %>%
+  select(-data)
+```
+
+Get the derivative for each environmental condition experienced by each species in each community
+
+```{r}
+comp_env <- full_join(composition, environment) %>%
+  group_by(community_id, species_id, environment_name) %>%
+  mutate(new_data = list(data.frame(environment_value = environment_value))) %>%
+  select(-environment_value, -environment_time) %>%
+  unique() %>%
+  full_join(response_models) %>%
+  rowwise() %>%
+  mutate(derivative = list(gratia::derivatives(models,
+                                               newdata = new_data))) %>%
+  unnest(derivative) %>%
+  select(-new_data, -models) %>%
+  rename(environment_value = data)
+```
+
+Calculate derivative based response diversity for each community and environmental value, and then take the average across environmental values
+
+```{r}
+deriv_resp_div <- comp_env %>%
+  group_by(study_id, community_id, trait_name, environment_name, environment_value) %>%
+  summarise(temp_mean_nss = resp_div(derivative, sign_sens = FALSE),
+            temp_mean_ss = resp_div(derivative, sign_sens = TRUE)) %>%
+  group_by(study_id, community_id, trait_name, environment_name) %>%
+  summarise(deriv_nss_respdiv = mean(temp_mean_nss),
+            deriv_ss_respdiv = mean(temp_mean_ss)) %>%
+  pivot_longer(names_to = "community_metric_name",
+               values_to = "community_metric_value",
+               cols = c("deriv_nss_respdiv", "deriv_ss_respdiv"))
+```
+
+# Correlation based response diversity
+
+Get average trait value for each species, trait, environment combination
+
+```{r}
+
+cor_resp_div <- trait %>%
+  group_by(study_id, species_id, trait_name, environment_name, environment_value) %>%
+  summarise(trait_value = mean(trait_value)) %>%
+  right_join(composition) %>%
+  right_join(environment) %>%
+  pivot_wider(names_from = species_id, names_prefix = "sp_",
+              values_from = trait_value) %>%
+  group_by(study_id, community_id, trait_name, environment_name) %>%
+  do(mean_cor = get_cor(.)) %>%
+  mutate(community_metric_name = "cor_respdiv",
+         community_metric_value = mean_cor[[1]]) %>%
+  select(-mean_cor)
+```
+
+# Make final dataset
+
+```{r}
+all_respdiv <- bind_rows(cor_resp_div, deriv_resp_div) %>%
+  pivot_wider(names_from = community_metric_name,
+              values_from = community_metric_value)
+all_community <- community %>%
+  pivot_wider(names_from = comm_metric_name,
+              values_from = comm_metric_value)
+all_comm_data <- full_join(all_respdiv, all_community)
+
+write_csv(all_comm_data, here("data/derived2/all_comm_data.csv"))
+```
+
+
