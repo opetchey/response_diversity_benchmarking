@@ -160,27 +160,27 @@ jar.spp <- cbind(jar.spp, tot=total.biomass[match(jar.spp$microcosm, total.bioma
 str(jar.spp)
 
 community_data <- jar.spp %>%
-  mutate(study_id = "Leary and Petchey 2009",
-         community_id = paste0("community-", microcosm)) %>%
+  mutate(study_name = "Leary and Petchey 2009",
+         community_name = paste0("community-", microcosm)) %>%
   rename(total_biomass = tot) %>%
-  pivot_longer(names_to = "comm_metric_name",
-               values_to = "comm_metric_value",
+  pivot_longer(names_to = "community_metric_name",
+               values_to = "community_metric_value",
                cols = 6:11) %>%
-  select(study_id, community_id, comm_metric_name, comm_metric_value)
+  select(study_name, community_name, community_metric_name, community_metric_value)
 write_csv(community_data, here("data/derived1/community_data.csv"))
          
 community_composition_data <- jar.spp %>%
-  mutate(study_id = "Leary and Petchey 2009",
-         community_id = paste0("community-", microcosm)) %>%
-  select(study_id, community_id, spp1, spp2) %>%
-  pivot_longer(names_to = "junk", values_to = "species_id", cols = 3:4) %>%
+  mutate(study_name = "Leary and Petchey 2009",
+         community_name = paste0("community-", microcosm)) %>%
+  select(study_name, community_name, spp1, spp2) %>%
+  pivot_longer(names_to = "junk", values_to = "species_name", cols = 3:4) %>%
   select(-junk)
 write_csv(community_composition_data, here("data/derived1/community_composition_data.csv"))
 
 environment_data <- jar.spp %>%
-  mutate(study_id = "Leary and Petchey 2009",
-         community_id = paste0("community-", microcosm)) %>%
-  select(study_id, community_id, temp.ranges) %>%
+  mutate(study_name = "Leary and Petchey 2009",
+         community_name = paste0("community-", microcosm)) %>%
+  select(study_name, community_name, temp.ranges) %>%
   rowwise() %>%
   mutate(temp = case_when(temp.ranges == 1 ~ "18-20-22",
                           temp.ranges == 2 ~ "20-22-24",

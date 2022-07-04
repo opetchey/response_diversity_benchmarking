@@ -108,11 +108,11 @@ rs <- rs %>%
   select(species_id = species, temperature, replicate, trait, trait_value = x)
 
 species_trait_data <- bind_rows(rs, K) %>%
-  mutate(study_id = "Leary and Petchey 2009",
+  mutate(study_name = "Leary and Petchey 2009",
          environment_name = "temperature") %>%
   rename(trait_name = trait,
          environment_value = temperature) %>%
-  select(study_id, species_id, replicate, trait_name, trait_value,
+  select(study_name, species_name = species_id, replicate, trait_name, trait_value,
          environment_name, environment_value)
 
 readr::write_csv(species_trait_data, file="data/derived1/trait_data.csv")

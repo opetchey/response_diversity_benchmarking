@@ -1,0 +1,36 @@
+﻿dataset_name,information_contained_in_variable,variable_name,maps_to_variable_in_dataset,neccessity
+trait,Name of the study,study_name,"community, composition, environment",required
+trait,Name of the species,species_name,composition,required
+trait,"Name of the trait, e.g. growth rate",trait_name,none,required
+trait,Value of the trait,trait_value,none,required
+trait,"Environmental variable name, e.g. temperature, used if the trait value was measured at a specific value of an environmental variable",environment_name,environment,optional
+trait,"Environmental value, e.g. 20 degrees C, used if the trait value was measured at a specific value of an environmental variable",environment_value,environment,optional
+composition,Name of the study,study_name,"community, trait, environment",required
+composition,"Name of community, e.g. community_1",community_name,"community, environment",required
+composition,Name of the species,species_name,trait,required
+community,Name of the study,study_name,"trait, composition, environment",required
+community,"Name of community, e.g. community_1",community_name,"composition, environment",required
+community,"Community metric name, e.g. coefficient of variation of total biomass",community_metric_name,none,required
+community,Community metic value,community_metric_value,none,required
+environment,Name of the study,study_name,"trait, composition, community",required
+environment,"Name of community, e.g. community_1",community_name,"composition, community",required
+environment,The time at which the environmental value occurred,environment_time,none,required
+environment,"Environmental variable name, e.g. temperature",environment_name,trait,required
+environment,"Environmental value, e.g. 20 degrees C",environment_value,trait,required
+all_community_data,Name of the study,study_name,"trait, community, composition, environment",required
+all_community_data,"Name of community, e.g. community_1",community_name,"composition, community, environment",required
+all_community_data,"Name of the trait, e.g. growth rate",trait_name,trait,required
+all_community_data,"Environmental variable name, e.g. temperature",environment_name,"trait, environment",required
+all_community_data,Other variables that contain community stability and response diversity measures,Names in metrics_metadata.csv,none,required
+studies_metadata,Name of the study,study_name,"trait, community, composition, environment",required
+studies_metadata,Name of the types of organisms in the study,organism_type,none,required
+studies_metadata,Name of type of ecosystem in study,ecosystem,none,required
+studies_metadata,DOI of reference for relevant research report,research_report_doi,,required
+studies_metadata,DOI of reference for original data deposit,data_deposit_doi,,required
+studies_metadata,Is population level data available?,population_data_available,none,required
+metrics_metadata,Name of metric,metric_name,all_community_data,required
+metrics_metadata,"Type of metric, diversity or stability",metric_type,none,required
+metrics_metadata,Description of metric,metric_description,none,required
+metrics_metadata,DOI of reference for metric,metric_DOI,none,required
+metrics_metadata,Name of R function for calcuating metric,r_function,none,required
+metrics_metadata,Name of R package for calcuating metric,r_package,none,required

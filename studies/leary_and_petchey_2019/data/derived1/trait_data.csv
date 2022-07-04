@@ -1,4 +1,4 @@
-study_id,species_id,replicate,trait_name,trait_value,environment_name,environment_value
+study_name,species_name,replicate,trait_name,trait_value,environment_name,environment_value
 Leary and Petchey 2009,tetrahymena,1,intrinsic growth rate,3.562814984942229,temperature,26
 Leary and Petchey 2009,tetrahymena,2,intrinsic growth rate,3.4364924667072048,temperature,26
 Leary and Petchey 2009,tetrahymena,3,intrinsic growth rate,3.4650975285511705,temperature,26

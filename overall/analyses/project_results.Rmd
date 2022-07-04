@@ -1,0 +1,49 @@
+---
+title: "Results of response diversity benchmarking project"
+date: "7/3/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warnings = FALSE)
+```
+
+```{r}
+rm(list = ls())
+library(tidyverse)
+library(here)
+source(here("r/functions.r"))
+```
+
+```{r}
+## Load project metadata
+metrics_metadata <- read_csv(here("overall/data/metrics_metadata.csv"))
+studies_metadata <- read_csv(here("overall/data/studies_metadata.csv"))
+```
+
+# The studies so far included
+
+```{r}
+studies_metadata %>%
+  knitr::kable()
+```
+
+## Metrics so far involved
+
+```{r}
+metrics_metadata %>%
+  knitr::kable()
+```
+
+## Load all studies so far included
+
+```{r}
+leary_and_petchey_2019 <- read_csv(here(paste0("studies/",
+                                               studies_metadata[1, "study_name"],
+                                               "/data/derived2/all_comm_data.csv")))
+```
+
+## Calculate explanatory / predictive power of response diversity
+
+
+

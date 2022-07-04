@@ -1,4 +1,4 @@
-study_id,community_id,comm_metric_name,comm_metric_value
+study_name,community_name,community_metric_name,community_metric_value
 Leary and Petchey 2009,community-1,cv,0.4633952543057386
 Leary and Petchey 2009,community-1,cov,4.104023101930036e-4
 Leary and Petchey 2009,community-1,cor,0.7152403088748726

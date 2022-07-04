@@ -1,3 +1,31 @@
+## Check each dataset contains the required variables
+
+check_variable_names <- function(studies_dataset_specs, dataset, dataset_name_oi) {
+  
+  needed <- studies_dataset_specs %>%
+    filter(dataset_name == dataset_name_oi, neccessity == "required") %>%
+    pull(variable_name)
+  result1 <- needed %in% names(dataset)
+  result2 <- ifelse(sum(result1)==length(needed),
+                    paste0("All required variables in the ", dataset_name_oi,
+                           " dataset are present and named correctly."),
+                    paste0("These required variables in the ", dataset_name_oi,
+                           " dataset are not present or are incorrectly named: ",
+                           paste(needed[result1], collapse = ", ")))
+  result2
+  result3 <- names(dataset)[!(names(dataset) %in% needed)]
+  result4 <- ifelse(length(result3)>0,
+                    paste0("These variables in the ", dataset_name_oi,
+                           " dataset are present but not required. This may be ok, please check: ",
+                           paste(result3, collapse = ", ")),
+                    paste0("Only required variables are present in the ", dataset_name_oi, " dataset"))
+  result4
+  rez <- list(result2, result4)
+  rez
+}
+
+
+
 ## Fit response curves and get derivatives
 ## 
 

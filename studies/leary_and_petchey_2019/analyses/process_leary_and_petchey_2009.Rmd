@@ -20,13 +20,13 @@ source(here("../../r/functions.r"))
 # Import and check datasets
 
 ```{r}
-study_id <- "leary_and_petchey_2019"
+study_name <- "leary_and_petchey_2019"
 ```
 
 ```{r}
 ## check correct folder locations
 temp <- stringr::str_split(here(), "/")[[1]]
-ifelse(temp[length(temp)] == study_id, "File locations correct.",
+ifelse(temp[length(temp)] == study_name, "File locations correct.",
    "here() is not returning the correct location.")
 ```
 
@@ -37,6 +37,43 @@ composition <- read_csv(here("data/derived1/community_composition_data.csv"))
 community <- read_csv(here("data/derived1/community_data.csv"))
 environment <- read_csv(here("data/derived1/environment_data.csv"))
 ```
+
+```{r}
+studies_dataset_specs <- read_csv(here("../../overall/data/dataset_specifications.csv"))
+```
+
+## Trait data
+
+```{r}
+var_name_check <- check_variable_names(studies_dataset_specs, trait, "trait")
+var_name_check
+```
+
+## Composition data
+
+```{r}
+var_name_check <- check_variable_names(studies_dataset_specs, composition, "composition")
+var_name_check
+```
+
+## Community data
+
+```{r}
+var_name_check <- check_variable_names(studies_dataset_specs, community, "community")
+var_name_check
+```
+
+## Environment data
+
+```{r}
+var_name_check <- check_variable_names(studies_dataset_specs, environment, "environment")
+var_name_check
+
+dataset <- environment
+dataset_name_oi <- "environment"
+
+```
+
 
 # Any trait transformations
 
@@ -50,11 +87,13 @@ trait <- trait %>%
 
 # Derivative based response diversity
 
+Note that here we calculate the response diversity as the average of the response diversity at the three temperatures experience. In another analysis we did calculate this based on the average response diversity at many levels across the corresponding temperature range. The two methods gave quite strongly correlated results.
+
 Fit response curves separately for each species and each environmental variable
 
 ```{r}
 response_models <- trait %>%
-  nest_by(species_id, trait_name, environment_name) %>%
+  nest_by(species_name, trait_name, environment_name) %>%
   mutate(models = list(mgcv::gam(trait_value ~ s(environment_value, k = 5),
                               data = data))) %>%
   select(-data)
@@ -64,7 +103,7 @@ Get the derivative for each environmental condition experienced by each species 
 
 ```{r}
 comp_env <- full_join(composition, environment) %>%
-  group_by(community_id, species_id, environment_name) %>%
+  group_by(community_name, species_name, environment_name) %>%
   mutate(new_data = list(data.frame(environment_value = environment_value))) %>%
   select(-environment_value, -environment_time) %>%
   unique() %>%
@@ -81,10 +120,10 @@ Calculate derivative based response diversity for each community and environment
 
 ```{r}
 deriv_resp_div <- comp_env %>%
-  group_by(study_id, community_id, trait_name, environment_name, environment_value) %>%
+  group_by(study_name, community_name, trait_name, environment_name, environment_value) %>%
   summarise(temp_mean_nss = resp_div(derivative, sign_sens = FALSE),
             temp_mean_ss = resp_div(derivative, sign_sens = TRUE)) %>%
-  group_by(study_id, community_id, trait_name, environment_name) %>%
+  group_by(study_name, community_name, trait_name, environment_name) %>%
   summarise(deriv_nss_respdiv = mean(temp_mean_nss),
             deriv_ss_respdiv = mean(temp_mean_ss)) %>%
   pivot_longer(names_to = "community_metric_name",
@@ -94,18 +133,20 @@ deriv_resp_div <- comp_env %>%
 
 # Correlation based response diversity
 
-Get average trait value for each species, trait, environment combination
+Note that this method is different from that used in the original publication. Here we calculate the average trait at each environment level, and then calculate the correlation of those averages. In the original publication we calculated the average correlation of every possible pairing of the replicates.
+
+Get average trait value for each species, trait, environment combination:
 
 ```{r}
 
 cor_resp_div <- trait %>%
-  group_by(study_id, species_id, trait_name, environment_name, environment_value) %>%
+  group_by(study_name, species_name, trait_name, environment_name, environment_value) %>%
   summarise(trait_value = mean(trait_value)) %>%
   right_join(composition) %>%
   right_join(environment) %>%
-  pivot_wider(names_from = species_id, names_prefix = "sp_",
+  pivot_wider(names_from = species_name, names_prefix = "sp_",
               values_from = trait_value) %>%
-  group_by(study_id, community_id, trait_name, environment_name) %>%
+  group_by(study_name, community_name, trait_name, environment_name) %>%
   do(mean_cor = get_cor(.)) %>%
   mutate(community_metric_name = "cor_respdiv",
          community_metric_value = mean_cor[[1]]) %>%
@@ -119,11 +160,79 @@ all_respdiv <- bind_rows(cor_resp_div, deriv_resp_div) %>%
   pivot_wider(names_from = community_metric_name,
               values_from = community_metric_value)
 all_community <- community %>%
-  pivot_wider(names_from = comm_metric_name,
-              values_from = comm_metric_value)
+  pivot_wider(names_from = community_metric_name,
+              values_from = community_metric_value)
 all_comm_data <- full_join(all_respdiv, all_community)
+
+comp_4join <- composition %>%
+  group_by(community_name) %>%
+  summarise(composition = paste(species_name, collapse="-"))
+env_4join <- environment %>%
+  group_by(community_name, environment_name) %>%
+  summarise(environment_values = paste(environment_value, collapse="-"))
+
+all_comm_data <- all_comm_data %>%
+  full_join(comp_4join) %>%
+  full_join(env_4join)
 
 write_csv(all_comm_data, here("data/derived2/all_comm_data.csv"))
 ```
 
+# Check some stuff
+
+All evaluations of code chunks set to false.
+
+```{r eval = false}
+rm(list = ls())
+library(tidyverse)
+library(here)
+source(here("../../r/functions.r"))
+```
+
+```{r eval = FALSE}
+new <- read_csv(here("data/derived2/all_comm_data.csv"))
+old <- read_csv(here("data/derived2/check_comm_data.csv")) %>%
+  mutate(microcosm_ID = str_replace_all(microcosm_ID, "M-", "community-"))
+```
+
+```{r eval = FALSE}
+new_r <- new %>%
+  select(community_name, trait_name,
+         cor_respdiv, deriv_nss_respdiv, deriv_ss_respdiv,
+         cv_new = cv) %>%
+  filter(trait_name == "intrinsic growth rate") %>%
+  arrange(community_name) %>%
+  select(-trait_name)
+new_K <- new %>%
+  select(community_name, trait_name,
+         cor_respdiv, deriv_nss_respdiv, deriv_ss_respdiv,
+         cv_new = cv) %>%
+  filter(trait_name == "carrying capacity") %>%
+  arrange(community_name) %>%
+  select(-trait_name)
+
+old_r <- old %>%
+  select(community_name = microcosm_ID,
+         r_cor, cv,
+         r_dissimilarity, r_divergence)
+old_K <- old %>%
+  select(community_name = microcosm_ID,
+        K_cor = k_cor, cv,
+        K_dissimilarity, K_divergence)
+
+compare_r <- full_join(new_r, old_r)
+compare_K <- full_join(new_K, old_K)
+```
+
+```{r eval = FALSE}
+compare_r %>%
+  select(-community_name) %>%
+GGally::ggpairs()
+```
+
+```{r eval = FALSE}
+compare_K %>%
+  select(-community_name) %>%
+GGally::ggpairs()
+```
 

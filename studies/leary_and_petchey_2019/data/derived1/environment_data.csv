@@ -1,4 +1,4 @@
-study_id,community_id,environment_value,environment_time,environment_name
+study_name,community_name,environment_value,environment_time,environment_name
 Leary and Petchey 2009,community-1,18,1,temperature
 Leary and Petchey 2009,community-1,20,2,temperature
 Leary and Petchey 2009,community-1,22,3,temperature

@@ -1,1 +1,2 @@
-﻿
+metric_name	metric_type	metric_description	metric_DOI	r_function	r_package
+CV	stability	Coefficient of variation (temporal) variation in a community or ecosystem state variable		sd/mean	base

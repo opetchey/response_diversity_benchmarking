@@ -1,2 +1,2 @@
-﻿study_id,organism_type,ecosystem,research_report_doi,data_deposit_doi
-leary_and_petchey_2009,cilitates,aquatic,10.1111/j.1365-2656.2009.01586.x,none yet
+﻿study_name,organism_type,ecosystem,research_report_doi,data_deposit_doi,population_data_available
+leary_and_petchey_2019,cilitates,aquatic,10.1111/j.1365-2656.2009.01586.x,none yet,TRUE
