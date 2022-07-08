@@ -13,12 +13,12 @@ The project aims to standardise and document methods, so that comparisons can be
 * a collection of individual studies. These are listed in the file `overall/data/study_metadata.csv`.
 * a collection of metrics of concepts such as community stability and response diversity. These are listed in the file `overall/data/metrics_metadata.csv`
 
-[The content and structure of the two datasets are described here.]((./docs/data_requirements.html))
+[The content and structure of the two datasets are described here.](./docs/data_requirements.html)
 
 **For each individual study:**
 
-* Data must be carefully processed and arranged in a set of three or four datasets (traits, environment, composition, and community). [The content and structure of these datasets are described here.]((./docs/data_requirements.html)).
+* Data must be carefully processed and arranged in a set of three or four datasets (traits, environment, composition, and community). [The content and structure of these datasets are described here.](./docs/data_requirements.html).
 
-* The data in the three or four datasets must be processed to produce a single dataset containing information about the stability and response diversity of each community. [The content and structure of this datasets are described here.]((./docs/data_requirements.html)).
+* The data in the three or four datasets must be processed to produce a single dataset containing information about the stability and response diversity of each community. [The content and structure of this datasets are described here.](./docs/data_requirements.html).
 
-[**Results within and across studies** are here.](link to be added)
+[**To be done: Results within and across studies** are here.](link to be added)
