@@ -8,6 +8,8 @@ Response diversity is a component of biodiversity that should predict community 
 
 The project aims to standardise and document methods, so that comparisons can be as valid and clear as possible. Therefore, quite some effort needs to be put into design of individual studies, organisation of data and processing, and each individual study needs to be carefully inserted into the provided analysis framework.
 
+This benchmarking project is an activity of the [Response Diversity Network](https://opetchey.github.io/ResponseDiversityNetwork/).
+
 **The benchmarking relies upon:**
 
 * a collection of individual studies. These are listed in the file `overall/data/study_metadata.csv`.
