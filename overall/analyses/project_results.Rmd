@@ -45,5 +45,50 @@ leary_and_petchey_2019 <- read_csv(here(paste0("studies/",
 
 ## Calculate explanatory / predictive power of response diversity
 
+*Section will need updating when new studies are added.
+
+Next we calculate the slope (with confidence intervals) of the relationship between community stability and the various measures of response diversity and display the results in a coefficients plot.
+
+```{r}
+comm_data_long <- leary_and_petchey_2019 %>%
+  ## make long, so that models of all combinations of
+  ## response and explanatory models can be easily run
+  pivot_longer(names_to = "resp_div_name", values_to = "resp_div_value",
+               5:7) %>%
+  pivot_longer(names_to = "community_variable_name", values_to = "community_variable_value",
+               5:10) %>%
+  ## scale the explanatory variables so model coefficients are more comparable
+  group_by(study_name, resp_div_name) %>%
+  mutate(resp_div_value_scaled = scale(resp_div_value)) %>%
+  ungroup()
+  
+  
+mods <- comm_data_long %>%
+  nest_by(study_name, trait_name, environment_name,
+          resp_div_name, community_variable_name) %>%
+  mutate(models = list(broom::tidy(lm(community_variable_value ~ resp_div_value_scaled,
+                              data = data), conf.int = TRUE))) %>%
+  select(-data) %>%
+  unnest(cols="models")
+
+study_oi <- "Leary and Petchey 2009"
+coef_plot <- mods %>%
+  filter(study_name == study_oi,
+         term == "resp_div_value_scaled",
+         community_variable_name == "cv") %>%
+  ggplot(aes(x = resp_div_name, y = estimate)) +
+  geom_point() +
+  geom_pointrange(aes(ymin = conf.low, ymax = conf.high))+
+  labs(title = paste0(study_oi)) +
+  xlab("Measure of response diversity") +
+  ylab("Slope of relationship between\ncommunity stability (CV)\nand response diversity.") +
+  facet_grid(cols = vars(trait_name),
+             rows = vars(study_name))
+coef_plot
+
+```
+
+The model (linear regression) is rather crude (a more sophisticated could account for some of the dependencies among observations). Nevertheless, the point is to show that this approach can be used to assess the performance of different measures of response diversity, and different traits used as the basis of the measure. In this example, response diversity calculated with the intrinsic growth rate trait and as the sign sensitive amount of variation in the derivative has the strongest relationship with community stability, and is the only relationship with confidence interval not overlapping zero.
+
 
 
