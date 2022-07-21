@@ -23,4 +23,6 @@ This benchmarking project is an activity of the [Response Diversity Network](htt
 
 * The data in the three or four datasets must be processed to produce a single dataset containing information about the stability and response diversity of each community. [The content and structure of this datasets are described here.](docs/data_requirements.html).
 
-[**To be done: Results within and across studies** are here.](link to be added)
+**Example outcome:**
+
+[Draft results within and across studies are here.](overall/analyses/project_results.html).
